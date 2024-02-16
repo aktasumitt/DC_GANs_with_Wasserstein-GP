@@ -31,7 +31,7 @@ def Training(EPOCHS,resume_epoch,BATCH_SIZE,F_DIM,gradient_penalty_fn,LAMDA_GP,I
                                             real_img=real_img,
                                             devices=devices)
                     
-                loss_disc=-(torch.mean(out_real)-torch.mean(out_fake)+(penalty*LAMDA_GP))
+                loss_disc=(-(torch.mean(out_real)-torch.mean(out_fake))+(penalty*LAMDA_GP))
                 loss_disc.backward(retain_graph=True)
                 
                 Optim_Disc.step()
@@ -56,7 +56,7 @@ def Training(EPOCHS,resume_epoch,BATCH_SIZE,F_DIM,gradient_penalty_fn,LAMDA_GP,I
             if batch==160:
                 break
             
-        
+        progress_bar.close()
         # Giving real images and generated images to tensorboard each epochs
         grid_real=make_grid(real_img,nrow=10)
         grid_fake=make_grid(fake_img,nrow=10)    
@@ -65,8 +65,8 @@ def Training(EPOCHS,resume_epoch,BATCH_SIZE,F_DIM,gradient_penalty_fn,LAMDA_GP,I
         tensorboard.add_image("Generated Image",grid_fake,global_step=epoch+1)
         
         # Giving losses to tensorboard each epochs
-        tensorboard.add_scalar("Discriminator loss", loss_disc/(batch+1),global_step=epoch+1)
-        tensorboard.add_scalar("Generator loss", loss_gen/(batch+1),global_step=epoch+1)
+        tensorboard.add_scalar("Discriminator loss", loss_value_disc/(batch+1),global_step=epoch+1)
+        tensorboard.add_scalar("Generator loss", loss_value_gen/(batch+1),global_step=epoch+1)
         
         # Save Checkpoints each epoch
         Save_Checkpoints(optim_gen=Optim_Gen,
