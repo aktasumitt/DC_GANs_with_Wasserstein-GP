@@ -37,11 +37,11 @@ TensorBoard, along with saving training or prediction images, allows you to save
 - The generator is trained once based on the results of discriminator training. 
 - The loss function used is KL-Divergence instead of BCELoss. 
 - The optimizer chosen is Adam with a learning rate of 5e-5.
-- I trained 20 epochs this model
+- I trained just 5 epochs this model
 
 
 ## Results:
-- After 50 epochs, Generator loss is aproximately 0.87 and discriminator loss is 0.64.There are generated images and graph of values on tensorboard.
+- After 5 epochs,There are generated images and graph of values on tensorboard.
 
 ## Usage: 
 - You can train the model by setting "TRAIN" to "True" in config file and your checkpoint will save in "config.CALLBACKS_PATH"
