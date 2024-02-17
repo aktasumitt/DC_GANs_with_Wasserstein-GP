@@ -1,4 +1,4 @@
-# Generative Adverserial Network (GANs)
+# Deep Convolutional GANs (DC_GANs) with Wasserstein-GP
 
 ## Introduction:
 In this project, I aimed to train a DC GANs model with Wasserstein-GP method using DC_GANs architecutre with Tensorboard to generate the images of Cifar10 dataset images from random noise.
